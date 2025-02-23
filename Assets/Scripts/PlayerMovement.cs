@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
 
 	public PlayerData Data;
 
+	private bool grounded;
+
 	#region Variables
 	//Components
     public Rigidbody2D RB { get; private set; }
@@ -155,6 +157,7 @@ public class PlayerMovement : MonoBehaviour
 			IsWallJumping = false;
 			_isJumpCut = false;
 			_isJumpFalling = false;
+			grounded = false;
 			Jump();
 		}
 		//WALL JUMP
@@ -385,7 +388,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool CanJump()
     {
-		return LastOnGroundTime > 0 && !IsJumping;
+		return LastOnGroundTime > 0 && !IsJumping && grounded;
     }
 
 	private bool CanWallJump()
@@ -396,12 +399,12 @@ public class PlayerMovement : MonoBehaviour
 
 	private bool CanJumpCut()
     {
-		return IsJumping && RB.linearVelocity.y > 0;
+		return IsJumping && RB.linearVelocity.y > 0 && grounded;
     }
 
 	private bool CanWallJumpCut()
 	{
-		return IsWallJumping && RB.linearVelocity.y > 0;
+		return IsWallJumping && RB.linearVelocity.y > 0 && grounded;
 	}
 
 	public bool CanSlide()
@@ -424,6 +427,12 @@ public class PlayerMovement : MonoBehaviour
 		Gizmos.DrawWireCube(_backWallCheckPoint.position, _wallCheckSize);
 	}
     #endregion
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if(collision.gameObject.tag == "Ground")
+			grounded = true;
+	}
 }
 
 // created by Dawnosaur :D
