@@ -72,7 +72,6 @@ public class NPC : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             isPlayerInRange = true;
-            print("Player is in range of NPC");
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -80,8 +79,6 @@ public class NPC : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             isPlayerInRange = false;
-            // print statement
-            print("Player is no longer in range of NPC");
             ResetText();
         }
     }
