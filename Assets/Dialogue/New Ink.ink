@@ -1,7 +1,2 @@
--> main
-
-=== main ===
-Press w and s to hover over a choice 
-space to select it
-
--> END
+This is text.
+This is a second text.

@@ -23,9 +23,6 @@ public class PlayerMovement : MonoBehaviour
  
     private void Update()
     {
-        if (DialogueManager.GetInstance().isDialoguePlaying)
-            return;
-
         horizontalInput = Input.GetAxis("Horizontal");
  
         //Flip player when facing left/right.
@@ -62,9 +59,6 @@ public class PlayerMovement : MonoBehaviour
  
     private void Jump()
     {
-        if (DialogueManager.GetInstance().isDialoguePlaying)
-            return;
-
         if (isGrounded())
         {
             body.linearVelocity = new Vector2(body.linearVelocity.x, jumpPower);
