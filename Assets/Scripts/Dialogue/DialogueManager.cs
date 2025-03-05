@@ -4,22 +4,25 @@ using Ink.Runtime;
 using System.Collections;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using UnityEngine.SearchService;
 
 public class DialogueManager : MonoBehaviour
 {
     [Header("Dialogue UI")]
-    private static DialogueManager instance;
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private TextMeshProUGUI displayName;
 
     [Header("Choices UI")]
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesTexts;
 
 
+    private static DialogueManager instance;
     private Story currentStory;
     public bool isDialoguePlaying { get; private set; }
-
+    private const string SPEAKER_TAG = "speaker";
+    private const string LAYOUT_TAG = "layout";
 
 
 
@@ -85,6 +88,7 @@ public class DialogueManager : MonoBehaviour
         {
             dialogueText.text = currentStory.Continue();
             DisplayChoices();
+            HandleTags(currentStory.currentTags);
         }
         else
         {
@@ -92,18 +96,35 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    private void HandleTags(List<string> tags)
+    {
+        foreach (string tag in tags)
+        {
+            if (tag.Contains(SPEAKER_TAG))
+            {
+                string speaker = tag.Split(':')[1];
+                displayName.text = speaker;
+                Debug.Log(speaker);
+            }
+            else if (tag.Contains(LAYOUT_TAG))
+            {
+                string layout = tag.Split(':')[1];
+                Debug.Log(layout);
+            }
+        }
+    }
+
     private void DisplayChoices()
     {
         List<Choice> currentChoices = currentStory.currentChoices;
 
-        if(currentChoices.Count > choices.Length)
+        if (currentChoices.Count > choices.Length)
         {
             Debug.LogWarning("There are more choices than buttons!");
             return;
         }
 
         int index = 0;
-        
         foreach(Choice choice in currentChoices)
         {
             choices[index].gameObject.SetActive(true);
@@ -111,7 +132,7 @@ public class DialogueManager : MonoBehaviour
             index++;
         }
 
-        for(int i = index; i < choices.Length; i++)
+        for (int i = index; i < choices.Length; i++)
         {
             choices[i].gameObject.SetActive(false);
         }

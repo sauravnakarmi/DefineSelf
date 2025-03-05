@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b868b1de265d95546bfc1069915aa2c9
+guid: ae8d656b2300ea841bf34950c6f5a8d9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4440121101769682537
-    second: npc pfp_0
+      213: 364611227797999292
+    second: mask man pfp_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: npc pfp_0
+      name: mask man pfp_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 53
-        height: 48
+        width: 234
+        height: 223
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7915d49f1658162c0800000000000000
-      internalID: -4440121101769682537
+      spriteID: cbec40adafb5f0500800000000000000
+      internalID: 364611227797999292
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      npc pfp_0: -4440121101769682537
+      mask man pfp_0: 364611227797999292
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
