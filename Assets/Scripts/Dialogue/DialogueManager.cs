@@ -4,13 +4,20 @@ using Ink.Runtime;
 using System.Collections;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using UnityEngine.SearchService;
 
 public class DialogueManager : MonoBehaviour
 {
     [Header("Dialogue UI")]
     private static DialogueManager instance;
     [SerializeField] private GameObject dialoguePanel;
+
     [SerializeField] private TextMeshProUGUI dialogueText;
+
+    [SerializeField] private TextMeshProUGUI displayNameText;
+    [SerializeField] private Animator portraitAnimator;
+
+    private Animator layoutAnimator;
 
     [Header("Choices UI")]
     [SerializeField] private GameObject[] choices;
@@ -19,6 +26,10 @@ public class DialogueManager : MonoBehaviour
 
     private Story currentStory;
     public bool isDialoguePlaying { get; private set; }
+
+    private const string SPEAKER_TAG = "speaker";
+    private const string PORTRAIT_TAG = "portrait";
+    private const string LAYOUT_TAG = "layout";
 
 
 
@@ -37,6 +48,8 @@ public class DialogueManager : MonoBehaviour
     {
         isDialoguePlaying = false;
         dialoguePanel.SetActive(false);
+
+        layoutAnimator = dialoguePanel.GetComponent<Animator>();
 
         choicesTexts = new TextMeshProUGUI[choices.Length];
         int index = 0;
@@ -67,6 +80,12 @@ public class DialogueManager : MonoBehaviour
         currentStory = new Story(inkJSON.text);
         isDialoguePlaying = true;
         dialoguePanel.SetActive(true);
+
+        displayNameText.text = "???";
+        portraitAnimator.Play("default");
+        layoutAnimator.Play("left");
+
+
         ContinueStory();
     }
 
@@ -85,6 +104,7 @@ public class DialogueManager : MonoBehaviour
         {
             dialogueText.text = currentStory.Continue();
             DisplayChoices();
+            HandleTags(currentStory.currentTags);
         }
         else
         {
@@ -92,6 +112,37 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    private void HandleTags(List<string> currentTags)
+    {
+        foreach (string tag in currentTags)
+        {
+            string[] splitTag = tag.Split(':');
+            if (splitTag.Length != 2)
+            {
+                Debug.LogWarning("Invalid tag format: " + tag);
+                return;
+            }
+            string tagKey = splitTag[0].Trim();
+            string tagValue = splitTag[1].Trim();
+            
+            switch (tagKey)
+            {
+                case SPEAKER_TAG:
+                    displayNameText.text = tagValue;
+                    break;
+                case PORTRAIT_TAG:
+                    portraitAnimator.Play(tagValue);
+                    break;
+                case LAYOUT_TAG:
+                    layoutAnimator.Play(tagValue);
+                    break;
+                default:
+                    Debug.LogWarning("Unknown tag: " + tagKey);
+                    break;
+            }
+
+        }
+    }
     private void DisplayChoices()
     {
         List<Choice> currentChoices = currentStory.currentChoices;
