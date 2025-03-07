@@ -8,15 +8,15 @@ using UnityEngine.SearchService;
 
 public class DialogueManager : MonoBehaviour
 {
+    [Header("Params")]
+    [SerializeField] private float typingSpeed = 0.06f;
+
     [Header("Dialogue UI")]
-    private static DialogueManager instance;
     [SerializeField] private GameObject dialoguePanel;
-
+    [SerializeField] private GameObject continueIcon;
     [SerializeField] private TextMeshProUGUI dialogueText;
-
     [SerializeField] private TextMeshProUGUI displayNameText;
     [SerializeField] private Animator portraitAnimator;
-
     private Animator layoutAnimator;
 
     [Header("Choices UI")]
@@ -24,15 +24,15 @@ public class DialogueManager : MonoBehaviour
     private TextMeshProUGUI[] choicesTexts;
 
 
+    private static DialogueManager instance;
     private Story currentStory;
     public bool isDialoguePlaying { get; private set; }
+    private bool canContinueDialogue = false;
+    private Coroutine displayLineCoroutine;
 
     private const string SPEAKER_TAG = "speaker";
     private const string PORTRAIT_TAG = "portrait";
     private const string LAYOUT_TAG = "layout";
-
-
-
 
     private void Awake()
     {
@@ -42,6 +42,11 @@ public class DialogueManager : MonoBehaviour
             return;
         }
         instance = this;
+    }
+
+    public static DialogueManager GetInstance()
+    {
+        return instance;
     }
 
     private void Start()
@@ -58,21 +63,15 @@ public class DialogueManager : MonoBehaviour
             choicesTexts[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
             index++;
         }
-
-
     }
 
-    void Update()
+    private void Update()
     {
         if (!isDialoguePlaying) return;
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (canContinueDialogue && currentStory.currentChoices.Count == 0 && Input.GetKeyDown(KeyCode.Space))
         {
             ContinueStory();
         }
-    }
-    public static DialogueManager GetInstance()
-    {
-        return instance;
     }
 
     public void StartDialogue(TextAsset inkJSON)
@@ -84,7 +83,6 @@ public class DialogueManager : MonoBehaviour
         displayNameText.text = "???";
         portraitAnimator.Play("default");
         layoutAnimator.Play("left");
-
 
         ContinueStory();
     }
@@ -102,13 +100,67 @@ public class DialogueManager : MonoBehaviour
     {
         if (currentStory.canContinue)
         {
-            dialogueText.text = currentStory.Continue();
-            DisplayChoices();
+            if (displayLineCoroutine != null)
+            {
+                StopCoroutine(displayLineCoroutine);
+            }
+            displayLineCoroutine = StartCoroutine(DisplayLine(currentStory.Continue()));
+
             HandleTags(currentStory.currentTags);
         }
         else
         {
             StartCoroutine(EndDialogue());
+        }
+    }
+
+    private IEnumerator DisplayLine(string line)
+    {
+        dialogueText.text = "";
+        continueIcon.SetActive(false);
+        HideChoices();
+
+        canContinueDialogue = false;
+
+        bool isAddingRichTextTag = false;
+
+        foreach (char letter in line.ToCharArray())
+        {
+            // if the submit button is pressed, finish up displaying the line right away
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                dialogueText.text = line;
+                break;
+            }
+
+            // check for rich text tag... will utilize this later
+            if (letter == '<' || isAddingRichTextTag)
+            {
+                isAddingRichTextTag = true;
+                dialogueText.text += letter;
+                if (letter == '>')
+                {
+                    isAddingRichTextTag = false;
+                }
+            }
+            else
+            {
+                dialogueText.text += letter;
+                yield return new WaitForSeconds(typingSpeed);
+            }
+        }
+
+        continueIcon.SetActive(true);
+        DisplayChoices();
+
+        canContinueDialogue = true;
+    }
+
+    private void HideChoices()
+    {
+        foreach (GameObject choiceButton in choices)
+        {
+            choiceButton.SetActive(false);
         }
     }
 
@@ -179,6 +231,9 @@ public class DialogueManager : MonoBehaviour
 
     public void MakeChoice(int choiceIndex)
     {
-        currentStory.ChooseChoiceIndex(choiceIndex);
+        if (canContinueDialogue)
+        {
+            currentStory.ChooseChoiceIndex(choiceIndex);
+        }
     }
 }
