@@ -11,6 +11,9 @@ public class DialogueManager : MonoBehaviour
     [Header("Params")]
     [SerializeField] private float typingSpeed = 0.06f;
 
+    [Header("Load Globals JSON")]
+    [SerializeField] private TextAsset loadGlobalsJSON;
+
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private GameObject continueIcon;
@@ -26,6 +29,7 @@ public class DialogueManager : MonoBehaviour
 
     private static DialogueManager instance;
     private Story currentStory;
+    private DialogueVariables dialogueVariables;
     public bool isDialoguePlaying { get; private set; }
     private bool canContinueDialogue = false;
     private Coroutine displayLineCoroutine;
@@ -42,6 +46,7 @@ public class DialogueManager : MonoBehaviour
             return;
         }
         instance = this;
+        dialogueVariables = new DialogueVariables(loadGlobalsJSON);
     }
 
     public static DialogueManager GetInstance()
@@ -79,6 +84,7 @@ public class DialogueManager : MonoBehaviour
         currentStory = new Story(inkJSON.text);
         isDialoguePlaying = true;
         dialoguePanel.SetActive(true);
+        dialogueVariables.StartListening(currentStory);
 
         displayNameText.text = "???";
         portraitAnimator.Play("default");
@@ -90,6 +96,7 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator EndDialogue()
     {
         yield return new WaitForSeconds(0.2f);
+        dialogueVariables.StopListening(currentStory);
 
         isDialoguePlaying = false;
         dialoguePanel.SetActive(false);
@@ -236,4 +243,16 @@ public class DialogueManager : MonoBehaviour
             currentStory.ChooseChoiceIndex(choiceIndex);
         }
     }
+
+    // Utilize later
+    //public Ink.Runtime.Object GetVariableState(string variableName)
+    //{
+    //    Ink.Runtime.Object variableValue = null;
+    //    dialogueVariables.variables.TryGetValue(variableName, out variableValue);
+    //    if (variableValue == null)
+    //    {
+    //        Debug.LogWarning("Ink Variable was found to be null: " + variableName);
+    //    }
+    //    return variableValue;
+    //}
 }
