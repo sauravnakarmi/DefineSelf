@@ -5,6 +5,7 @@ using System.Collections;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using UnityEngine.SearchService;
+using UnityEditor;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -107,13 +108,24 @@ public class DialogueManager : MonoBehaviour
     {
         if (currentStory.canContinue)
         {
+            // set text for the current dialogue line
             if (displayLineCoroutine != null)
             {
                 StopCoroutine(displayLineCoroutine);
             }
-            displayLineCoroutine = StartCoroutine(DisplayLine(currentStory.Continue()));
-
-            HandleTags(currentStory.currentTags);
+            string nextLine = currentStory.Continue();
+            // handle case where the last line is an external function
+            if (nextLine.Equals("") && !currentStory.canContinue)
+            {
+                StartCoroutine(EndDialogue());
+            }
+            // otherwise, handle the normal case for continuing the story
+            else
+            {
+                // handle tags
+                HandleTags(currentStory.currentTags);
+                displayLineCoroutine = StartCoroutine(DisplayLine(nextLine));
+            }
         }
         else
         {
@@ -121,9 +133,13 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+
     private IEnumerator DisplayLine(string line)
     {
-        dialogueText.text = "";
+        // set the text to the full line, but set the visible characters to 0
+        dialogueText.text = line;
+        dialogueText.maxVisibleCharacters = 0;
+        // hide items while text is typing
         continueIcon.SetActive(false);
         HideChoices();
 
@@ -131,32 +147,34 @@ public class DialogueManager : MonoBehaviour
 
         bool isAddingRichTextTag = false;
 
+        // display each letter one at a time
         foreach (char letter in line.ToCharArray())
         {
             // if the submit button is pressed, finish up displaying the line right away
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                dialogueText.text = line;
+                dialogueText.maxVisibleCharacters = line.Length;
                 break;
             }
 
-            // check for rich text tag... will utilize this later
+            // check for rich text tag, if found, add it without waiting
             if (letter == '<' || isAddingRichTextTag)
             {
                 isAddingRichTextTag = true;
-                dialogueText.text += letter;
                 if (letter == '>')
                 {
                     isAddingRichTextTag = false;
                 }
             }
+            // if not rich text, add the next letter and wait a small time
             else
             {
-                dialogueText.text += letter;
+                dialogueText.maxVisibleCharacters++;
                 yield return new WaitForSeconds(typingSpeed);
             }
         }
 
+        // actions to take after the entire line has finished displaying
         continueIcon.SetActive(true);
         DisplayChoices();
 
@@ -241,6 +259,8 @@ public class DialogueManager : MonoBehaviour
         if (canContinueDialogue)
         {
             currentStory.ChooseChoiceIndex(choiceIndex);
+            // NOTE: The below two lines were added to fix a bug after the Youtube video was made
+            ContinueStory();
         }
     }
 
