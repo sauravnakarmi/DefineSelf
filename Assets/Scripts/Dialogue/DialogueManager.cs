@@ -150,13 +150,6 @@ public class DialogueManager : MonoBehaviour
         // display each letter one at a time
         foreach (char letter in line.ToCharArray())
         {
-            // if the submit button is pressed, finish up displaying the line right away
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                dialogueText.maxVisibleCharacters = line.Length;
-                break;
-            }
-
             // check for rich text tag, if found, add it without waiting
             if (letter == '<' || isAddingRichTextTag)
             {
