@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Ink.Runtime;
 using System.IO;
+using System;
 
 public class DialogueVariables
 {
@@ -41,8 +42,8 @@ public class DialogueVariables
         if (variables.ContainsKey(name))
         {
             variables[name] = value;
+            Debug.Log("Update variable: " + name + " = " + value);
         }
-        variables.Add(name, value);
     }
 
     private void VariablesToStory(Story story)
