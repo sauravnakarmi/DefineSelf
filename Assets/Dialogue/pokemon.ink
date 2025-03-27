@@ -5,7 +5,7 @@ INCLUDE globals.ink
 -> main
 
 === main ===
-Which pokemon do you choose?
+Which pokemon do you choose? #speaker:Mr. Blue #portrait:mr_blue_neutral #layout:right #audio:animal_crossing_low
     + [Charmander]
         -> chosen("Charmander")
     + [Bulbasaur]
@@ -19,5 +19,5 @@ You chose {pokemon}!
 -> END
 
 === alreadyChose ===
-You already chose {pokemonName}
+You already chose {pokemonName} #audio:animal_crossing_low
 -> END
