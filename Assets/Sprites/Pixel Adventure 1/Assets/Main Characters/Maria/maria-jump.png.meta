@@ -1,0 +1,455 @@
+fileFormatVersion: 2
+guid: bb56196363ff54c4584294557395e03f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -549292772312453375
+    second: maria-jump_0
+  - first:
+      213: 3911513873768852716
+    second: maria-jump_1
+  - first:
+      213: 4121136796992392528
+    second: maria-jump_2
+  - first:
+      213: -9104703913564859245
+    second: maria-jump_3
+  - first:
+      213: -1940174714099426517
+    second: maria-jump_4
+  - first:
+      213: 1582270125892204220
+    second: maria-jump_5
+  - first:
+      213: -7080085004471095630
+    second: maria-jump_6
+  - first:
+      213: 7512793606633186606
+    second: maria-jump_7
+  - first:
+      213: 3304482250686695238
+    second: maria-jump_8
+  - first:
+      213: 8471966059155452613
+    second: maria-jump_9
+  - first:
+      213: 7277026438568558785
+    second: maria-jump_10
+  - first:
+      213: -2093008999739743734
+    second: maria-jump_11
+  - first:
+      213: 6405826734691604505
+    second: maria-jump_12
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: maria-jump_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 2
+        width: 46
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10f60a442258068f0800000000000000
+      internalID: -549292772312453375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maria-jump_1
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 14
+        width: 38
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cec2104e42d784630800000000000000
+      internalID: 3911513873768852716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maria-jump_2
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 14
+        width: 39
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05dc5870518313930800000000000000
+      internalID: 4121136796992392528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maria-jump_3
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 14
+        width: 37
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3949bd6870895a180800000000000000
+      internalID: -9104703913564859245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maria-jump_4
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 17
+        width: 41
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2b98e3806d1315e0800000000000000
+      internalID: -1940174714099426517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maria-jump_5
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 21
+        width: 42
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb67488db4a55f510800000000000000
+      internalID: 1582270125892204220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maria-jump_6
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 24
+        width: 45
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2be2ee8433c7ebd90800000000000000
+      internalID: -7080085004471095630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maria-jump_7
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 20
+        width: 46
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2562321bfdc24860800000000000000
+      internalID: 7512793606633186606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maria-jump_8
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 14
+        width: 50
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64783ce5911ebdd20800000000000000
+      internalID: 3304482250686695238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maria-jump_9
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 9
+        width: 45
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c270219e38729570800000000000000
+      internalID: 8471966059155452613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maria-jump_10
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 9
+        width: 45
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c041049df03df460800000000000000
+      internalID: 7277026438568558785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maria-jump_11
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 10
+        width: 45
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0221da676324f2e0800000000000000
+      internalID: -2093008999739743734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maria-jump_12
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 2
+        width: 46
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9185ef5c97116e850800000000000000
+      internalID: 6405826734691604505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      maria-jump_0: -549292772312453375
+      maria-jump_1: 3911513873768852716
+      maria-jump_10: 7277026438568558785
+      maria-jump_11: -2093008999739743734
+      maria-jump_12: 6405826734691604505
+      maria-jump_2: 4121136796992392528
+      maria-jump_3: -9104703913564859245
+      maria-jump_4: -1940174714099426517
+      maria-jump_5: 1582270125892204220
+      maria-jump_6: -7080085004471095630
+      maria-jump_7: 7512793606633186606
+      maria-jump_8: 3304482250686695238
+      maria-jump_9: 8471966059155452613
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
