@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
  
 public class PlayerMovement : MonoBehaviour
@@ -9,13 +11,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float coyoteTime; //How much time the player can hang in the air before jumping
     private float coyoteCounter; //How much time passed since the player ran off the edge
 
+
     [Header("Multiple Jumps")]
     [SerializeField] private int extraJumps;
     private int jumpCounter;
 
-    [Header("Wall Jumping")]
-    [SerializeField] private float wallJumpX; //Horizontal wall jump force
-    [SerializeField] private float wallJumpY; //Vertical wall jump force
 
     [SerializeField] private float size;
     [SerializeField] private LayerMask groundLayer;
@@ -62,21 +62,22 @@ public class PlayerMovement : MonoBehaviour
         //Adjustable jump height
         if (Input.GetKeyUp(KeyCode.Space) && body.linearVelocity.y > 0)
             body.linearVelocity = new Vector2(body.linearVelocity.x, body.linearVelocity.y / 2);
-
-        if (onWall())
-        {
-            body.gravityScale = 10;
-            body.linearVelocity = Vector2.zero;
-        }
         else
         {
             body.gravityScale = 2;
             body.linearVelocity = new Vector2(horizontalInput * speed, body.linearVelocity.y);
 
+            if (onWall() && !isGrounded())
+            {
+                body.gravityScale = 0;
+                body.linearVelocity = new Vector2(0, 0);
+            }
+
             if (isGrounded())
             {
                 coyoteCounter = coyoteTime; //Reset coyote counter when on the ground
                 jumpCounter = extraJumps; //Reset jump counter to extra jump value
+                anim.SetBool("doublejump", false);
             }
             else
                 coyoteCounter -= Time.deltaTime; //Start decreasing coyote counter when not on the ground
@@ -88,47 +89,39 @@ public class PlayerMovement : MonoBehaviour
         if (DialogueManager.GetInstance().isDialoguePlaying)
             return;
 
-        if (coyoteCounter <= 0 && !onWall() && jumpCounter <= 0) return;
+        if (coyoteCounter <= 0 && jumpCounter <= 0) return;
         //If coyote counter is 0 or less and not on the wall and don't have any extra jumps don't do anything
 
         SoundManager.instance.PlaySound(jumpSound);
-
-        if (onWall())
-            WallJump();
+        if(isGrounded())
+        {
+            body.linearVelocity = new Vector2(body.linearVelocity.x, jumpPower);
+        }
         else
         {
-            if (isGrounded())
+            //If not on the ground and coyote counter bigger than 0 do a normal jump
+            if (coyoteCounter > 0)
                 body.linearVelocity = new Vector2(body.linearVelocity.x, jumpPower);
             else
             {
-                //If not on the ground and coyote counter bigger than 0 do a normal jump
-                if (coyoteCounter > 0)
-                    body.linearVelocity = new Vector2(body.linearVelocity.x, jumpPower);
-                else
+                if (jumpCounter > 0) //If we have extra jumps then jump and decrease the jump counter
                 {
-                    if (jumpCounter > 0) //If we have extra jumps then jump and decrease the jump counter
-                    {
-                        body.linearVelocity = new Vector2(body.linearVelocity.x, jumpPower);
-                        jumpCounter--;
-                    }
+                    anim.SetBool("doublejump", true);
+                    body.linearVelocity = new Vector2(body.linearVelocity.x, jumpPower);
+                    jumpCounter--;
                 }
-            }
 
-            //Reset coyote counter to 0 to avoid double jumps
-            coyoteCounter = 0;
+            }
         }
     }
 
-    private void WallJump()
+    public void stopPlayer()
     {
-        // uncomment to enable wall jumping body.AddForce(new Vector2(-Mathf.Sign(transform.localScale.x) * wallJumpX, wallJumpY));
-        // wallJumpCooldown = 0;
+        body.linearVelocity = new Vector2(0, 0);
+        horizontalInput = 0;
+        anim.SetBool("run", false);
     }
 
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-    }
 
     private bool isGrounded()
     {

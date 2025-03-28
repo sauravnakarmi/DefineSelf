@@ -9,14 +9,14 @@ public class DialogueTrigger : MonoBehaviour
     [Header("Ink JSON")]
     [SerializeField] private TextAsset inkJSON;
 
-    [SerializeField] private Animator myAnimationController;
-
-    private bool playerInRange; 
+    private bool playerInRange;
+    PlayerMovement playerMovement;
 
     private void Awake()
     {
         playerInRange = false;
         visualCue.SetActive(false);
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
     }
 
     private void Update()
@@ -28,8 +28,7 @@ public class DialogueTrigger : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 DialogueManager.GetInstance().StartDialogue(inkJSON);
-                myAnimationController.SetBool("run", false);
-
+                playerMovement.stopPlayer();
             }
         }
         else
