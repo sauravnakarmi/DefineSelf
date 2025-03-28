@@ -1758,7 +1758,7 @@ GameObject:
   m_Component:
   - component: {fileID: 483146327}
   - component: {fileID: 483146328}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: WellEdge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6878,6 +6878,11 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.48917294, y: 5.0744133}
   m_EdgeRadius: 0
+--- !u!1 &2118846528 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5455731466397831998, guid: 209c0a95cb55b2648adb5c90251765ae, type: 3}
+  m_PrefabInstance: {fileID: 6536856869049787086}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &209877835658247107 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 748802637351519512, guid: 209c0a95cb55b2648adb5c90251765ae, type: 3}
@@ -7003,16 +7008,92 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 9211063861280445781, guid: 209c0a95cb55b2648adb5c90251765ae, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5455731466397831998, guid: 209c0a95cb55b2648adb5c90251765ae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6955222067278019543}
+    - targetCorrespondingSourceObject: {fileID: 5455731466397831998, guid: 209c0a95cb55b2648adb5c90251765ae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6955222067278019544}
   m_SourcePrefab: {fileID: 100100000, guid: 209c0a95cb55b2648adb5c90251765ae, type: 3}
 --- !u!95 &6955222067278019538 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 306991252356339455, guid: 209c0a95cb55b2648adb5c90251765ae, type: 3}
   m_PrefabInstance: {fileID: 6536856869049787086}
   m_PrefabAsset: {fileID: 0}
+--- !u!50 &6955222067278019540 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 3920300163445771600, guid: 209c0a95cb55b2648adb5c90251765ae, type: 3}
+  m_PrefabInstance: {fileID: 6536856869049787086}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6955222067278019543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118846528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb7a9d55d5ed2964b866b44b06994c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontal: 0
+  speed: 8
+  jumpingPower: 16
+  isFacingRight: 1
+  isWallSliding: 0
+  wallSlidingSpeed: 2
+  canDash: 1
+  isDashing: 0
+  dashingPower: 24
+  dashingTime: 0.2
+  dashingCooldown: 1
+  isWallJumping: 0
+  wallJumpingDirection: 0
+  wallJumpingTime: 0.2
+  wallJumpingCounter: 0
+  wallJumpingDuration: 0.4
+  wallJumpingPower: {x: 8, y: 16}
+  rb: {fileID: 6955222067278019540}
+  groundCheck: {fileID: 0}
+  groundLayer:
+    m_Bits: 128
+  tr: {fileID: 0}
+  wallCheck: {fileID: 0}
+  wallLayer:
+    m_Bits: 256
+--- !u!114 &6955222067278019544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118846528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 993108a4b97b4064389766ef6f0c8766, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  jumpPower: 0
+  coyoteTime: 0
+  extraJumps: 0
+  size: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  jumpSound: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
