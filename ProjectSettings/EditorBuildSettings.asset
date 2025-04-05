@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Levels/Level2.unity
     guid: 12f2763904f10824489fec12521004be
+  - enabled: 1
+    path: Assets/Levels/StealingMinigame.unity
+    guid: f0a94c514a6ed9c4f9b1b80a1b1e41a0
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

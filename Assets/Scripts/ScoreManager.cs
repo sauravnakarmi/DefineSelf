@@ -15,12 +15,12 @@ public class ScoreManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        scoreText.text = score.ToString() + "Points";
+        scoreText.text = score.ToString() + "$";
     }
 
     public void AddPoint()
     {
         score += 1;
-        scoreText.text = score.ToString() + "Points";
+        scoreText.text = score.ToString() + "$";
     }
 }
