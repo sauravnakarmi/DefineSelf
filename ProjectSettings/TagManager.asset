@@ -8,6 +8,7 @@ TagManager:
   - Point
   - Goal
   - OutOfBounds
+  - Obstacle
   layers:
   - Default
   - TransparentFX
